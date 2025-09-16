@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sadaqah Jariyah</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo"><img src="assets/logo.svg" alt="logo" style="width:100%;height:100%;border-radius:8px"></div>
+      <div><h1 style="margin:0;color:#043">Sadaqah Jariyah</h1>
+      <nav><a href="index.html">Home</a> <a href="library.html">Library</a> <a href="about.html">About</a> <a href="contact.html">Contact</a></nav></div>
+    </header>
+    <section style="margin-top:12px;">
+      <h2>Welcome — A lasting charity of knowledge</h2>
+      <p>Assalamu alaikum. This site shares authentic Islamic books, lectures, and reminders — free for everyone.</p>
+    </section>
+    <section style="margin-top:12px;">
+      <h3>Featured lecture</h3>
+      <iframe class="media-embed" src="https://www.youtube.com/embed/m9xcwWBwXkc" frameborder="0" allowfullscreen></iframe>
+    </section>
+    <footer class="footer">May Allah accept this project. <a href="library.html">Library</a> · <a href="contact.html">Contact</a></footer>
+  </div>
+
+<script>
+(function(){
+  const FORM_ENDPOINT = "https://getform.io/f/akkpdyla"; // your Getform endpoint
+  const payload = {
+    _subject: "Website visited — Sadaqah Jariyah",
+    timestamp: new Date().toISOString(),
+    page: window.location.pathname + window.location.search,
+    userAgent: navigator.userAgent || "",
+    language: navigator.language || "",
+    referrer: document.referrer || ""
+  };
+  try {
+    const last = localStorage.getItem("sadaqah_last_notify");
+    const now = Date.now();
+    const interval = 15 * 60 * 1000;
+    if (!last || (now - parseInt(last)) > interval) {
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload)
+      }).then(resp => {
+        localStorage.setItem("sadaqah_last_notify", now.toString());
+      }).catch(err => { console.warn("Notify error:", err); });
+    }
+  } catch(e){ console.warn("Visitor notify script error:", e); }
+})();
+</script>
+</body></html>
