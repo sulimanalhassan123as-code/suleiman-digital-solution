@@ -1,0 +1,1 @@
+Sadaqah Jariyah website package. Upload all files to your GitHub repo root. Getform endpoint already set to https://getform.io/f/akkpdyla
